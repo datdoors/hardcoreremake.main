@@ -1,0 +1,66 @@
+-- HARDCORE V4 REMAKE - EXTREME ENTITY PACK
+-- made by smile and tuffmu
+
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local player = Players.LocalPlayer
+
+--------------------------------------------------
+-- DOORS CAPTION (GỐC)
+--------------------------------------------------
+local caption = require(
+	player.PlayerGui
+	.MainUI
+	.Initiator
+	.Main_Game
+).caption
+
+caption("hardcore v4 remake successfully loaded", true)
+task.wait(6)
+
+--------------------------------------------------
+-- ENTITY LOADERS (GIỮ NGUYÊN SCRIPT)
+--------------------------------------------------
+local EntityLoaders = {
+	-- Greed
+	"https://raw.githubusercontent.com/trungdepth-dot/Entity-greed/refs/heads/main/Greed-update",
+
+	-- Shocker
+	"https://raw.githubusercontent.com/vct0721/Doors-Stuff/refs/heads/main/Entities/Shocker",
+
+	-- Munci
+	"https://raw.githubusercontent.com/Junbbinopro/Munci-entity/refs/heads/main/Munci-20",
+
+	-- Pastefy Entity
+	"https://pastefy.app/ofutwkjb/raw",
+
+	-- Fragmented v5 (HARD)
+	"https://raw.githubusercontent.com/talales/Nhankg/refs/heads/main/fragmented%20v5"
+}
+
+--------------------------------------------------
+-- LOAD AN TOÀN + DELAY
+--------------------------------------------------
+for _, url in ipairs(EntityLoaders) do
+	task.spawn(function()
+		pcall(function()
+			loadstring(game:HttpGet(url))()
+		end)
+	end)
+	task.wait(math.random(2,4))
+end
+
+--------------------------------------------------
+-- DOOR 1 MESSAGE
+--------------------------------------------------
+local LatestRoom = ReplicatedStorage.GameData.LatestRoom
+local triggered = false
+
+LatestRoom.Changed:Connect(function(room)
+	if room == 1 and not triggered then
+		triggered = true
+		caption("made by smile and tuffmu", true)
+		task.wait(4)
+		caption("good luck!", true)
+	end
+end)
